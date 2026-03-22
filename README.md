@@ -1,23 +1,5 @@
 
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![Signed
-by](https://img.shields.io/badge/Keybase-Verified-brightgreen.svg)](https://keybase.io/hrbrmstr)
-![Signed commit
-%](https://img.shields.io/badge/Signed_Commits-100%25-lightgrey.svg)
-[![Linux build
-Status](https://travis-ci.org/hrbrmstr/uaparserjs.svg?branch=master)](https://travis-ci.org/hrbrmstr/uaparserjs)
-[![Windows build
-status](https://ci.appveyor.com/api/projects/status/github/hrbrmstr/uaparserjs?svg=true)](https://ci.appveyor.com/project/hrbrmstr/uaparserjs)
-[![Coverage
-Status](https://codecov.io/gh/hrbrmstr/uaparserjs/branch/master/graph/badge.svg)](https://codecov.io/gh/hrbrmstr/uaparserjs)
-[![cran
-checks](https://cranchecks.info/badges/worst/uaparserjs)](https://cranchecks.info/pkgs/uaparserjs)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/uaparserjs)](https://www.r-pkg.org/pkg/uaparserjs)
-![Minimal R
-Version](https://img.shields.io/badge/R%3E%3D-3.5.0-blue.svg)
+
 ![License](https://img.shields.io/badge/License-Apache-blue.svg)
 
 # uaparserjs
@@ -27,7 +9,7 @@ Parse ‘User-Agent’ Strings
 ## Description
 
 Despite there being a section in RFC 7231
-<https://tools.ietf.org/html/rfc7231#section-5.5.3> defining a suggested
+<https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3> defining a suggested
 structure for ‘User-Agent’ headers this data is notoriously difficult to
 parse consistently. Tools are provided that will take in user agent
 strings and return structured R objects. This is a ‘V8’-backed package
@@ -48,21 +30,8 @@ The following functions are implemented:
 ## Installation
 
 ``` r
-install.packages("uaparserjs", repos = c("https://cinc.rud.is", "https://cloud.r-project.org/"))
-# or
-remotes::install_git("https://git.rud.is/hrbrmstr/uaparserjs.git")
-# or
-remotes::install_git("https://git.sr.ht/~hrbrmstr/uaparserjs")
-# or
-remotes::install_gitlab("hrbrmstr/uaparserjs")
-# or
-remotes::install_bitbucket("hrbrmstr/uaparserjs")
-# or
-remotes::install_github("hrbrmstr/uaparserjs")
+install.packages("uaparserjs")
 ```
-
-NOTE: To use the ‘remotes’ install options you will need to have the
-[{remotes} package](https://github.com/r-lib/remotes) installed.
 
 ### Usage
 
@@ -115,15 +84,3 @@ microbenchmark::microbenchmark(
 ##  ua_parse(batch_100) 708.7338 721.5558 737.8894 730.8626 742.9891 928.1393   100
 ```
 
-## uaparserjs Metrics
-
-| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
-| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | ---: |
-| R    |        5 | 0.83 |  72 | 0.82 |          37 | 0.65 |       34 | 0.54 |
-| Rmd  |        1 | 0.17 |  16 | 0.18 |          20 | 0.35 |       29 | 0.46 |
-
-## Code of Conduct
-
-Please note that this project is released with a Contributor Code of
-Conduct. By participating in this project you agree to abide by its
-terms.

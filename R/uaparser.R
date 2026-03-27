@@ -17,8 +17,8 @@ as_tibble <- function(.x) {
 #' @return a data frame classed as tibble with columns for user agent family, major & minor versions
 #'     plus patch level along with OS family and major & minor versions plus
 #'     device brand and model.
-#' @references <http://www.uaparser.org/>
-#' @note The regex YAML import date: 2020-03-31
+#' @references <https://github.com/ua-parser/uap-core/>
+#' @note The regex YAML is now updated when the package is rebuilt.  The effective date is that of the package submission.
 #' @examples
 #' ua_parse(paste0("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, ",
 #'                 "like Gecko) Ubuntu/11.10 Chromium/15.0.874.106 ",

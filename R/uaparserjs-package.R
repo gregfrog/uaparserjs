@@ -8,7 +8,6 @@
 #' based on the 'ua-parser' project <https://github.com/ua-parser>.
 #'
 #' @name uaparserjs
-#' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
 #' @import V8 progress
-NULL
+"_PACKAGE"

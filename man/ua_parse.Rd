@@ -24,7 +24,7 @@ Takes in a character vector of user agent strings and returns a data frame class
 of parsed user agents.
 }
 \note{
-The regex YAML import date: 2020-03-31
+The regex YAML from uap-core is now updated when the package is rebuilt.  The effective date can be found in the NEWS file.
 }
 \examples{
 ua_parse(paste0("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, ",
@@ -32,5 +32,5 @@ ua_parse(paste0("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, ",
                 "Chrome/15.0.874.106 Safari/535.2", collapse=""))
 }
 \references{
-<http://www.uaparser.org/>
+<https://github.com/ua-parser/uap-core/>
 }

@@ -1,9 +1,0 @@
-language: r
-cache: packages
-
-addons:
-  apt:
-    packages:
-      - libv8-dev
-
-warnings_are_errors: true

@@ -40,7 +40,7 @@ as_tibble <- function(.x) {
 #' ua_parse(paste0("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, ",
 #'                 "like Gecko) Ubuntu/11.10 Chromium/15.0.874.106 ",
 #'                 "Chrome/15.0.874.106 Safari/535.2", collapse=""))
-ua_parse <- function(user_agents, .progress=FALSE) {
+ua_parse <- function(user_agents, .progress=FALSE, useNA=FALSE) {
 
   if (.progress) pb <- progress::progress_bar$new(length(user_agents))
   if (.progress) pb$tick(0)
@@ -55,6 +55,13 @@ ua_parse <- function(user_agents, .progress=FALSE) {
 
       res
 
+    } else if (is.na(x) & useNA) {
+
+      as_tibble(as.list(c(userAgent=NA_character_, 
+                          ua.family=NA_character_, 
+                          os.family=NA_character_, 
+                          device.family=NA_character_)))
+      
     } else {
 
       .pkgenv$cache[[x]] <- as_tibble(as.list(unlist(.pkgenv$ctx$call("parser.parse", x))))

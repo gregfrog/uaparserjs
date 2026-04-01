@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+#    Copyright 2026 Greg Hunt
+
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
+
+#        http://www.apache.org/licenses/LICENSE-2.0
+
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+
 UAPCOREGITREPO=workdir-uap-core
 UAPCOREREPOURL=https://github.com/ua-parser/uap-core.git
 
@@ -16,11 +30,20 @@ npm install -g --save-dev webpack-cli
 
 git init
 git remote add origin ${UAPCOREREPOURL}
-git sparse-checkout set --no-cone 'tests/*.yaml' 'test_resources/*.yaml' 'regexes.yaml'
+git sparse-checkout set --no-cone 'tests/*.yaml' 'regexes.yaml'
 git pull origin master
+git log -1 --format="%cd %h" regexes.yaml > ../LASTUAPCOMMIT
+
+echo Last UAP Commit is: 
+cat ../LASTUAPCOMMIT
 
 if [[ ! -f regexes.yaml ]]; then
   echo "regexes.yaml not present after git pull"
+  return 1
+fi
+
+if [[ ! -d tests ]]; then
+  echo "tests directory not present after git pull"
   return 1
 fi
 
@@ -114,5 +137,7 @@ rm -rf dist
 rm -rf workdir-uap-core
 rm -rf webpack.config.js
 
-echo "generated bundle.js moved to build/bundle.js, it must be moved by hand to inst/js for the R packaghe build"
-echo "test yaml files from uap core are in build/tests and must be moved by hand into inst/tinytest/tests"
+echo "generated bundle.js moved to build/bundle.js.  Run copyjs.sh to move it to inst/js for the R packaghe build"
+echo "test yaml files from uap core are in build/tests.  Run copyjs.sh to move them to inst/tinytest/tests"
+echo "edit the last UAP commit into the NEWS file" 
+cat LASTUAPCOMMIT

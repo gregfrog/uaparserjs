@@ -1,9 +1,10 @@
+#!/usr/bin/env bash
 
-#   Copyright 2020 Bob Rudis
+#    Copyright 2026 Greg Hunt
 
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
+#    You may obtain a copy of the License ats
 
 #        http://www.apache.org/licenses/LICENSE-2.0
 
@@ -13,7 +14,25 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-if ( requireNamespace("tinytest", quietly=TRUE) ){
-  tinytest::test_package("uaparserjs")
+mv bundle.js ../inst/js/bundle.js
+mv tests/* ../inst/tinytest/tests/
+
+LASTCOMMIT=`cat LASTUAPCOMMIT`
+
+cat << EOFSED > sedfile
+1,/^\*.*$/{
+        /\* Note: Includes UAP.*/d;
+        /^\#/{
+            a \* Note: Includes UAP-Core regexes.yaml commits up to: ${LASTCOMMIT}
+            p
+        }
+ }
+3,\${
+     p
 }
 
+EOFSED
+
+sed -n -f sedfile -i ../NEWS.md
+head ../NEWS.md
+rm sedfile

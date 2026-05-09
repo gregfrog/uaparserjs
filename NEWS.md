@@ -1,3 +1,6 @@
+# 0.3.8 (2026-05-09)
+* Note: Includes UAP-Core regexes.yaml commits up to: Thu May 7 11:59:15 2026 -0700 880683d
+
 # 0.3.7 (2026-04-01)
 * Note: Includes UAP-Core regexes.yaml commits up to: Mon Feb 9 12:37:56 2026 +0000 256bff9
 * Change: added test cases from uap-core

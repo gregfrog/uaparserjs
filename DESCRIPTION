@@ -1,8 +1,8 @@
 Package: uaparserjs
 Type: Package
 Title: Parse 'User-Agent' Strings
-Version: 0.3.7
-Date: 2026-04-01
+Version: 0.3.8
+Date: 2026-05-09
 Authors@R: c(
     person("Bob", "Rudis", , "bob@rud.is", role = c("aut", "cph")),
     person("Greg", "Hunt", , "greg@firmansyah.com", role = c("aut", "cre", "cph")),

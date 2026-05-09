@@ -10,3 +10,5 @@
 ^CRAN-RELEASE$
 ^\.git$
 build
+^\.positai$
+^\.claude$

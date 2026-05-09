@@ -4,3 +4,4 @@
 .Rproj
 *.gz
 *.Rcheck
+.positai

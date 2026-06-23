@@ -35,9 +35,11 @@ library(uaparserjs)
 #   });
 # });
 
-uaTest<-function()
+uaTest <- function()
 {
   uaFiles = c('./tests/test_ua.yaml')
+
+  uaparserjs:::cache_reset()
 
   for(fName in uaFiles )
   {
@@ -53,7 +55,50 @@ uaTest<-function()
   }
 }
 
+uaTestNA <- function()
+{
+  uaFiles = c('./tests/test_ua.yaml')
+
+  #uaparserjs:::cache_reset()
+  for(fName in uaFiles )
+  {
+    uas = read_yaml(fName)
+    #uas = uaparserjs:::nullToNA(uas)
+    for(ua in uas$test_cases)
+    {
+      thisUa = uaparserjs::ua_parse(ua$user_agent_string, useNA=TRUE)
+      expect_equal(thisUa$ua.family, ua$family);
+      if(is.null(ua$major))
+      {
+        expect_true(is.na(thisUa$ua.major))
+      }
+      else
+      {
+        expect_equal(thisUa$ua.major, ua$major);
+      }
+      if(is.null(ua$minor))
+      {
+        expect_true(is.na(thisUa$ua.minor))
+      }
+      else
+      {
+        expect_equal(thisUa$ua.minor, ua$minor);
+      }
+      if(is.null(ua$patch))
+      {
+        expect_true(is.na(thisUa$ua.patch))
+      }
+      else
+      {
+        expect_equal(thisUa$ua.patch, ua$patch);
+      }
+    }
+  }
+
+}
+
 uaTest()
+uaTestNA()
 
 # ['../tests/test_os.yaml', '../test_resources/additional_os_tests.yaml'].forEach(function(fileName) {
 #   var fixtures = readYAML(fileName).test_cases;
@@ -72,9 +117,11 @@ uaTest()
 #   });
 # });
 
-osTest<-function()
+osTest <- function()
 {
   uaFiles = c("./tests/test_os.yaml")
+
+  #uaparserjs:::cache_reset()
 
   for(fName in uaFiles )
   {
@@ -90,7 +137,50 @@ osTest<-function()
   }
 }
 
+
+osTestNA <- function()
+{
+  uaFiles = c("./tests/test_os.yaml")
+
+  #uaparserjs:::cache_reset()
+  for(fName in uaFiles )
+  {
+    uas = read_yaml(fName)
+#    uas = uaparserjs:::nullToNA(uas)
+    for(os in uas$test_cases)
+    {
+      thisUa = uaparserjs::ua_parse(os$user_agent_string, useNA=TRUE)
+      expect_equal(thisUa$os.family, os$family);
+      if(is.null(os$major))
+      {
+        expect_true(is.na(thisUa$os.major))
+      }
+      else
+      {
+        expect_equal(thisUa$os.major, os$major);
+      }
+      if(is.null(os$minor))
+      {
+        expect_true(is.na(thisUa$os.minor))
+      }
+      else
+      {
+        expect_equal(thisUa$os.minor, os$minor);
+      }
+      if(is.null(os$patch))
+      {
+        expect_true(is.na(thisUa$os.patch))
+      }
+      else
+      {
+        expect_equal(thisUa$os.patch, os$patch,info="NA true - patch");
+      }
+    }
+  }
+}
+
 osTest()
+osTestNA()
 
 
 # ['../tests/test_device.yaml'].forEach(function(fileName) {
@@ -108,9 +198,11 @@ osTest()
 #   });
 # });
 
-devTest<-function()
+devTest <- function()
 {
   uaFiles = c("./tests/test_device.yaml")
+
+  #uaparserjs:::cache_reset()
 
   for(fName in uaFiles )
   {
@@ -125,7 +217,48 @@ devTest<-function()
   }
 }
 
+devTestNA <- function()
+{
+  uaFiles = c("./tests/test_device.yaml")
+
+  #uaparserjs:::cache_reset()
+  for(fName in uaFiles )
+  {
+    uas = read_yaml(fName)
+    #uas = uaparserjs:::nullToNA(uas)
+    for(dev in uas$test_cases)
+    {
+      thisUa = uaparserjs::ua_parse(dev$user_agent_string, useNA=TRUE)
+      if(is.null(dev$family))
+      {
+        expect_true(is.na(thisUa$device.family))
+      }
+      else
+      {
+        expect_equal(thisUa$device.family, dev$family);
+      }
+      if(is.null(dev$brand))
+      {
+        expect_true(is.na(thisUa$device.brand))
+      }
+      else
+      {
+        expect_equal(thisUa$device.brand, dev$brand,info=paste("with NA", thisUa$device.brand, dev$brand));
+      }
+      if(is.null(dev$model))
+      {
+        expect_true(is.na(thisUa$device.model))
+      }
+      else
+      {
+        expect_equal(thisUa$device.model, dev$model);
+      }
+    }
+  }
+}
+
 devTest()
+devTestNA()
 
 #function fixFixture(f, props) {
 #  // A bug in the YAML parser makes empty fixture props

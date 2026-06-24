@@ -22,19 +22,17 @@ bind_rows <- function(...) {
 
   cols <- unique(unlist(lapply(res, names), use.names = FALSE))
 
-  id_vals <- if (is.null(names(res))) 1:length(res) else names(res)
-
-  idx <- 1
   do.call(
     rbind.data.frame,
     lapply(res, function(.x) {
-      x_names <- names(.x)
-      moar_names <- setdiff(cols, x_names)
-      if (length(moar_names) > 0) {
-        for (i in 1:length(moar_names)) {
-          .x[[moar_names[i]]] <- rep(NA, length(.x[[1]]))
+        x_names <- names(.x)
+        moar_names <- setdiff(cols, x_names)
+        if(is.data.frame(.x) && nrow(.x))
+        {
+          for (i in seq_along(moar_names)) {
+            .x[[moar_names[i]]] <- rep(NA, length(.x[[1]]))
+          }
         }
-      }
       .x
     })
   ) -> out

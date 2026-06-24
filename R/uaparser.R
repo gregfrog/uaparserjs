@@ -59,9 +59,9 @@ ua_parse <- function(user_agents, .progress=FALSE, useNA=FALSE) {
 # ghastly thing below to maintin compaibility with existing bug where a zero length string returns an empty data frame
 # regardless of how it parsed, adding a prefix to distingush the different code paths changed that behaviour
 
-        if(x == "")
+        if(!is.na(x) && !is.null(x) && x == "")
         {
-                return(as_tibble(data.frame()))
+          return(as_tibble(list()))
         }
 
         .pkgenv$cache[[x]] <- as_tibble(as.list(unlist(.pkgenv$ctx$call("parser.parse", x))))

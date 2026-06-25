@@ -37,8 +37,44 @@ uas_test <- data.frame(
 
 res = uaparserjs::ua_parse(uas_test$uastrings)
 
+# dumped output from old code for comparison  
+oldres <-structure(list(userAgent = c("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.10 Chromium/15.0.874.106 Chrome/15.0.874.106 Safari/535.2", 
+"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36", 
+"Mozilla/5.0 (Linux; Android 9; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.210 Mobile Safari/537.36", 
+" "), ua.family = c("Chromium", "Chrome", "Chrome Mobile", "Other"
+), ua.major = c("15", "90", "90", NA), ua.minor = c("0", "0", 
+"0", NA), ua.patch = c("874", "4430", "4430", NA), os.family = c("Ubuntu", 
+"Windows", "Android", "Other"), os.major = c("11", "10", "9", 
+NA), os.minor = c("10", NA, NA, NA), device.family = c("Other", 
+"Other", "Motorola g(6)", "Other"), device.brand = c(NA, NA, 
+"Motorola", NA), device.model = c(NA, NA, "g(6)", NA)), row.names = c(NA, 
+-4L), class = c("tbl_df", "tbl", "data.frame"))
+
 expect_equal(nrow(res), 4, info="useNA FALSE in multi-row check")
+expect_equal(res, oldres, info="useNA FALSE in multi-row check")
 
 res = uaparserjs::ua_parse(uas_test$uastrings, useNA = TRUE)
 
+# dumped output from useNA code  
+NAres <-
+structure(list(userAgent = c("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.10 Chromium/15.0.874.106 Chrome/15.0.874.106 Safari/535.2", 
+"", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36", 
+NA, "Mozilla/5.0 (Linux; Android 9; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.210 Mobile Safari/537.36", 
+" "), ua.family = c("Chromium", "Other", "Chrome", "Other", "Chrome Mobile", 
+"Other"), ua.major = c("15", NA, "90", NA, "90", NA), ua.minor = c("0", 
+NA, "0", NA, "0", NA), ua.patch = c("874", NA, "4430", NA, "4430", 
+NA), os.family = c("Ubuntu", "Other", "Windows", "Other", "Android", 
+"Other"), os.major = c("11", NA, "10", NA, "9", NA), os.minor = c("10", 
+NA, NA, NA, NA, NA), os.patch = c(NA_character_, NA_character_, 
+NA_character_, NA_character_, NA_character_, NA_character_), 
+    os.patchMinor = c(NA_character_, NA_character_, NA_character_, 
+    NA_character_, NA_character_, NA_character_), device.family = c("Other", 
+    "Other", "Other", "Other", "Motorola g(6)", "Other"), device.brand = c(NA, 
+    NA, NA, NA, "Motorola", NA), device.model = c(NA, NA, NA, 
+    NA, "g(6)", NA)), class = c("tbl_df", "tbl", "data.frame"
+), row.names = c(NA, -6L))
+
 expect_equal(nrow(res), 6, info="useNA TRUE in multi-row check")
+expect_equal(res, NAres, info="useNA TRUE in multi-row check")
+
+

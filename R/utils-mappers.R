@@ -25,10 +25,10 @@ bind_rows <- function(...) {
   do.call(
     rbind.data.frame,
     lapply(res, function(.x) {
-        x_names <- names(.x)
-        moar_names <- setdiff(cols, x_names)
         if(is.data.frame(.x) && nrow(.x))
         {
+          x_names <- names(.x)
+          moar_names <- setdiff(cols, x_names)
           for (i in seq_along(moar_names)) {
             .x[[moar_names[i]]] <- rep(NA, length(.x[[1]]))
           }

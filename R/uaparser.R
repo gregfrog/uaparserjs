@@ -44,7 +44,7 @@ ua_parse <- function(user_agents, .progress=FALSE, useNA=FALSE) {
 
     lapply(user_agents, function(x) {
 
-      cacheKey = paste0("1",x)
+      cacheKey = paste0("1", x)
 
       if (.progress) pb$tick()$print()
 
@@ -56,8 +56,8 @@ ua_parse <- function(user_agents, .progress=FALSE, useNA=FALSE) {
 
       } else {
 
-# ghastly thing below to maintin compaibility with existing bug where a zero length string returns an empty data frame
-# regardless of how it parsed, adding a prefix to distingush the different code paths changed that behaviour
+# ghastly thing below to maintin compatibility with an existing bug where a zero length string returns an empty data frame
+# regardless of how it parsed, adding a prefix to distingush the different code paths changed that behaviour.
 
         if(!is.na(x) && !is.null(x) && x == "")
         {
@@ -89,7 +89,7 @@ parseWithNA <- function(user_agents, .progress=FALSE)
 
   lapply(user_agents, function(x) {
 
-    cacheKey = paste0("0",x)
+    cacheKey = paste0("0", x)
 
     if (.progress) pb$tick()$print()
 

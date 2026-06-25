@@ -3,3 +3,6 @@ README\.Rmd
 \.git
 build
 \.github
+^.*\.Rproj$
+^\.Rproj\.user$
+\.lintr

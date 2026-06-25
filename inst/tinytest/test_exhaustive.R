@@ -37,44 +37,44 @@ library(uaparserjs)
 
 uaTest <- function()
 {
-  uaFiles = c('./tests/test_ua.yaml')
+  uaFiles = c("./tests/test_ua.yaml")
 
   uaparserjs:::cache_reset()
 
-  for(fName in uaFiles )
+  for(fName in uaFiles)
   {
     uas = read_yaml(fName)
     for(ua in uas$test_cases)
     {
       thisUa = uaparserjs::ua_parse(ua$user_agent_string)
-      expect_equal(thisUa$ua.family, ua$family);
-      expect_equal(thisUa$ua.major, ua$major);
-      expect_equal(thisUa$ua.minor, ua$minor);
-      expect_equal(thisUa$ua.patch, ua$patch);
+      expect_equal(thisUa$ua.family, ua$family)
+      expect_equal(thisUa$ua.major, ua$major)
+      expect_equal(thisUa$ua.minor, ua$minor)
+      expect_equal(thisUa$ua.patch, ua$patch)
     }
   }
 }
 
 uaTestNA <- function()
 {
-  uaFiles = c('./tests/test_ua.yaml')
+  uaFiles = c("./tests/test_ua.yaml")
 
   #uaparserjs:::cache_reset()
-  for(fName in uaFiles )
+  for(fName in uaFiles)
   {
     uas = read_yaml(fName)
     #uas = uaparserjs:::nullToNA(uas)
     for(ua in uas$test_cases)
     {
       thisUa = uaparserjs::ua_parse(ua$user_agent_string, useNA=TRUE)
-      expect_equal(thisUa$ua.family, ua$family);
+      expect_equal(thisUa$ua.family, ua$family)
       if(is.null(ua$major))
       {
         expect_true(is.na(thisUa$ua.major))
       }
       else
       {
-        expect_equal(thisUa$ua.major, ua$major);
+        expect_equal(thisUa$ua.major, ua$major)
       }
       if(is.null(ua$minor))
       {
@@ -82,7 +82,7 @@ uaTestNA <- function()
       }
       else
       {
-        expect_equal(thisUa$ua.minor, ua$minor);
+        expect_equal(thisUa$ua.minor, ua$minor)
       }
       if(is.null(ua$patch))
       {
@@ -90,7 +90,7 @@ uaTestNA <- function()
       }
       else
       {
-        expect_equal(thisUa$ua.patch, ua$patch);
+        expect_equal(thisUa$ua.patch, ua$patch)
       }
     }
   }
@@ -121,18 +121,16 @@ osTest <- function()
 {
   uaFiles = c("./tests/test_os.yaml")
 
-  #uaparserjs:::cache_reset()
-
-  for(fName in uaFiles )
+  for(fName in uaFiles)
   {
     uas = read_yaml(fName)
     for(os in uas$test_cases)
     {
       thisUa = uaparserjs::ua_parse(os$user_agent_string)
-      expect_equal(thisUa$os.family, os$family);
-      expect_equal(thisUa$os.major, os$major);
-      expect_equal(thisUa$os.minor, os$minor);
-      expect_equal(thisUa$os.patch, os$patch);
+      expect_equal(thisUa$os.family, os$family)
+      expect_equal(thisUa$os.major, os$major)
+      expect_equal(thisUa$os.minor, os$minor)
+      expect_equal(thisUa$os.patch, os$patch)
     }
   }
 }
@@ -142,22 +140,20 @@ osTestNA <- function()
 {
   uaFiles = c("./tests/test_os.yaml")
 
-  #uaparserjs:::cache_reset()
-  for(fName in uaFiles )
+  for(fName in uaFiles)
   {
     uas = read_yaml(fName)
-#    uas = uaparserjs:::nullToNA(uas)
     for(os in uas$test_cases)
     {
       thisUa = uaparserjs::ua_parse(os$user_agent_string, useNA=TRUE)
-      expect_equal(thisUa$os.family, os$family);
+      expect_equal(thisUa$os.family, os$family)
       if(is.null(os$major))
       {
         expect_true(is.na(thisUa$os.major))
       }
       else
       {
-        expect_equal(thisUa$os.major, os$major);
+        expect_equal(thisUa$os.major, os$major)
       }
       if(is.null(os$minor))
       {
@@ -165,7 +161,7 @@ osTestNA <- function()
       }
       else
       {
-        expect_equal(thisUa$os.minor, os$minor);
+        expect_equal(thisUa$os.minor, os$minor)
       }
       if(is.null(os$patch))
       {
@@ -173,7 +169,7 @@ osTestNA <- function()
       }
       else
       {
-        expect_equal(thisUa$os.patch, os$patch,info="NA true - patch");
+        expect_equal(thisUa$os.patch, os$patch, info="NA true - patch")
       }
     }
   }
@@ -202,17 +198,16 @@ devTest <- function()
 {
   uaFiles = c("./tests/test_device.yaml")
 
-  #uaparserjs:::cache_reset()
 
-  for(fName in uaFiles )
+  for(fName in uaFiles)
   {
     uas = read_yaml(fName)
     for(dev in uas$test_cases)
     {
       thisUa = uaparserjs::ua_parse(dev$user_agent_string)
-      expect_equal(thisUa$device.family, dev$family);
-      expect_equal(thisUa$device.brand, dev$brand);
-      expect_equal(thisUa$device.model, dev$model);
+      expect_equal(thisUa$device.family, dev$family)
+      expect_equal(thisUa$device.brand, dev$brand)
+      expect_equal(thisUa$device.model, dev$model)
     }
   }
 }
@@ -221,11 +216,9 @@ devTestNA <- function()
 {
   uaFiles = c("./tests/test_device.yaml")
 
-  #uaparserjs:::cache_reset()
-  for(fName in uaFiles )
+  for(fName in uaFiles)
   {
     uas = read_yaml(fName)
-    #uas = uaparserjs:::nullToNA(uas)
     for(dev in uas$test_cases)
     {
       thisUa = uaparserjs::ua_parse(dev$user_agent_string, useNA=TRUE)
@@ -235,7 +228,7 @@ devTestNA <- function()
       }
       else
       {
-        expect_equal(thisUa$device.family, dev$family);
+        expect_equal(thisUa$device.family, dev$family)
       }
       if(is.null(dev$brand))
       {
@@ -243,7 +236,7 @@ devTestNA <- function()
       }
       else
       {
-        expect_equal(thisUa$device.brand, dev$brand,info=paste("with NA", thisUa$device.brand, dev$brand));
+        expect_equal(thisUa$device.brand, dev$brand, info=paste("with NA", thisUa$device.brand, dev$brand))
       }
       if(is.null(dev$model))
       {
@@ -251,7 +244,7 @@ devTestNA <- function()
       }
       else
       {
-        expect_equal(thisUa$device.model, dev$model);
+        expect_equal(thisUa$device.model, dev$model)
       }
     }
   }

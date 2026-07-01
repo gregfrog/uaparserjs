@@ -1,4 +1,5 @@
 #   Copyright 2020 Bob Rudis
+#   portions Copyright 2026 Greg Hunt
 
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -14,6 +15,7 @@
 
 # this has limitations and is more like 75% of dplyr::bind_rows()
 # this is also orders of magnitude slower than dplyr::bind_rows()
+
 bind_rows <- function(...) {
 
   res <- list(...)
@@ -44,3 +46,24 @@ bind_rows <- function(...) {
   out
 
 }
+
+internal_as_tibble <- function(.x) {
+
+  out <- as.data.frame(.x, stringsAsFactors = FALSE)
+  class(out) <- c("tbl_df", "tbl", "data.frame")
+  out
+}
+
+nullToNA <- function(x) {
+  lapply(x, function(x) {
+    if (is.list(x)){
+      nullToNA(x)
+    } else{
+      if(is.null(x)) NA else(x)
+    }
+  })
+}
+
+get_cache <- function() { .pkgenv$cache }
+
+cache_reset <- function() { .pkgenv$cache = list() }

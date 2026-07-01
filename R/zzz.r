@@ -1,5 +1,6 @@
 
 #   Copyright 2020 Bob Rudis
+#   portions Copyright 2026 Greg Hunt
 
 #    Licensed under the Apache License, Version 2.0 (the "License");
 #    you may not use this file except in compliance with the License.
@@ -20,8 +21,11 @@
   ctx <- v8()
   ctx$source(system.file("js/bundle.js", package="uaparserjs"))
   ctx$eval(JS('var parser = uap(regexes)'))
+  
+  tibbleAvailable = requireNamespace("tibble", quietly = TRUE)
 
   assign("ctx", ctx, envir=.pkgenv)
+  assign("tibbleAvailable", tibbleAvailable, envir=.pkgenv)
 
   cache <- list()
 

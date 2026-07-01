@@ -97,8 +97,6 @@ uaTestNA <- function()
 
 }
 
-uaTest()
-uaTestNA()
 
 # ['../tests/test_os.yaml', '../test_resources/additional_os_tests.yaml'].forEach(function(fileName) {
 #   var fixtures = readYAML(fileName).test_cases;
@@ -175,8 +173,6 @@ osTestNA <- function()
   }
 }
 
-osTest()
-osTestNA()
 
 
 # ['../tests/test_device.yaml'].forEach(function(fileName) {
@@ -250,8 +246,6 @@ devTestNA <- function()
   }
 }
 
-devTest()
-devTestNA()
 
 #function fixFixture(f, props) {
 #  // A bug in the YAML parser makes empty fixture props
@@ -263,4 +257,20 @@ devTestNA()
 #  })
 #  return f;
 #}
+
+# check for local dev environment - this is unreliable 
+# but better than the complete absence of support for detecting 
+# a CRAN build from the R team   
+
+if(dir.exists("../../../.git"))
+{  
+  uaTest()
+  uaTestNA()
+
+  osTest()
+  osTestNA()
+
+  devTest()
+  devTestNA()
+}
 

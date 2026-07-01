@@ -6,3 +6,5 @@ build
 ^.*\.Rproj$
 ^\.Rproj\.user$
 \.lintr
+.*\.Rcheck
+.*\.gz

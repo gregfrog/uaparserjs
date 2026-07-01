@@ -1,3 +1,9 @@
+# 0.4.0 (2026-07-02)
+* Note: Includes UAP-Core regexes.yaml commits up to: Tue May 26 15:01:27 2026 +0100 5bf1320
+* Added useNA flag to return NA values instead of omitting rows or columns in the tibble, this
+will result in one row of output for each row input (based on a proposal from Jim Vine) which is potentially different behaviour over past releases
+* useNA=TRUE will call as_tibble from the tibble package if the tibble namespace is loadable, previous behaviour was to coerce values to a data frame and add tibble class attributes, this seems to skip some validations and is not guaranteed to work as the tibble package evolves.    
+
 # 0.3.8 (2026-05-09)
 * Note: Includes UAP-Core regexes.yaml commits up to: Thu May 7 11:59:15 2026 -0700 880683d
 

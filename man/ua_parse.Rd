@@ -13,7 +13,7 @@ get_cache()
 \item{.progress}{if `TRUE`  will display a progress bar in interactive mode}
 
 \item{useNA}{If `TRUE` will ensure that for each user agent passed in a parsed result is returned and NA values will be returned for
-all attributes.  Default value FALSE. When FALSE, NULL or zero length string user agent strings are not parsed and are not returtned 
+all attributes.  The default value is FALSE for compatibility with existing behaviour.  TRUE is recommended.  When FALSE, NULL or zero length string user agent strings are not parsed and are not returned 
 in the data frame and under some circumstances not all attributes are returned. 
 }
 }
@@ -31,6 +31,8 @@ a data frame classed as tibble with columns for:
 \item{}device brand (device.brand) device model (device.model)
 }
 The Family values are identified as "Other" for unrecognised or unparseable user agent strings.
+
+When \code{useNA} is true and the \link[tibble]{tibble} package is available, an actual tibble is returned.   
 }
 \description{
 Takes in a character vector of user agent strings and returns a data frame (classed as tibble) 

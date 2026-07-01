@@ -8,18 +8,8 @@ Parse ‘User-Agent’ Strings
 
 ## Description
 
-Despite there being a section in RFC 7231
-<https://datatracker.ietf.org/doc/html/rfc7231#section-5.5.3> defining a suggested
-structure for ‘User-Agent’ headers this data is notoriously difficult to
-parse consistently. Tools are provided that will take in user agent
-strings and return structured R objects. This is a ‘V8’-backed package
-based on the ‘ua-parser’ project <https://github.com/ua-parser>.
-
-NOTE: there is a [C++-backed R
-package](https://github.com/ua-parser/uap-r) but it has
-[issues](https://github.com/ua-parser/uap-r/issues) compiling on a few
-platforms and is dependent upon Boost regex. This version is definitely
-slower but it works on all platforms.
+Parses HTTP user agent strings and returns user agent, device and OS information.  This is a 'V8'-backed package
+based on the 'ua-parser' project <https://github.com/ua-parser>.
 
 ## What’s Inside The Tin
 

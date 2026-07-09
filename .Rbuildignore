@@ -1,5 +1,7 @@
 .*\.Rproj
 README\.Rmd
+README\.md
+README_files
 \.git
 build
 \.github

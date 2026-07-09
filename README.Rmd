@@ -3,35 +3,26 @@ output: rmarkdown::github_document
 editor_options: 
   chunk_output_type: console
 ---
-```{r pkg-knitr-opts, include=FALSE}
-hrbrpkghelpr::global_opts()
-```
+![License](https://img.shields.io/badge/License-Apache-blue.svg)
 
-```{r badges, results='asis', echo=FALSE, cache=FALSE}
-hrbrpkghelpr::stinking_badges()
-```
+# uaparserjs
 
-```{r description, results='asis', echo=FALSE, cache=FALSE}
-hrbrpkghelpr::yank_title_and_description()
-```
+Parses HTTP user agent strings and returns user agent, device and OS information.  This is a 'V8'-backed package
+based on the 'ua-parser' project <https://github.com/ua-parser>.
 
-NOTE: there is a [C++-backed R package](https://github.com/ua-parser/uap-r) but it has [issues](https://github.com/ua-parser/uap-r/issues) compiling on a few platforms and is dependent upon Boost regex. This version is definitely slower but it works on all platforms.
-
-## What's Inside The Tin
+## Functions
 
 The following functions are implemented:
 
-```{r ingredients, results='asis', echo=FALSE, cache=FALSE}
-hrbrpkghelpr::describe_ingredients()
-```
+  - `ua_parse`: Parse a vector of user agents into a data frame
 
 ## Installation
 
-```{r install-ex, results='asis', echo=FALSE, cache=FALSE}
-hrbrpkghelpr::install_block()
+``` r
+install.packages("uaparserjs")
 ```
 
-### Usage
+## Example Usage
 
 ```{r}
 library(uaparserjs)
@@ -45,21 +36,199 @@ agents <- readLines(system.file("extdat", "agents.txt", package = "uaparserjs"))
 
 dplyr::glimpse(ua_parse(agents))
 
+```
+## Performance
+Time for parsing small numbers of UA strings with useNA defaulting to FALSE and list cache
+```{r}
+
 set.seed(100)
-batch_100 <- sample(agents, 100)
+#batch_100 <- sample(agents, 100)
+assign("cache", list(), envir=uaparserjs:::.pkgenv)
 microbenchmark::microbenchmark(
-  ua_parse(batch_100)
+  ua_parse(agents)
 )
 
 ```
+Time for parsing small numbers of UA strings with list cache and useNA=TRUE
+```{r}
 
-## uaparserjs Metrics
+set.seed(100)
+#batch_100 <- sample(agents, 100)
+assign("cache", list(), envir=uaparserjs:::.pkgenv)
+microbenchmark::microbenchmark(
+  ua_parse(agents,useNA=TRUE)
+)
 
-```{r cloc, echo=FALSE}
-cloc::cloc_pkg_md()
+```
+Time for parsing small numbers of UA strings with environment cache and useNA=TRUE
+```{r}
+
+set.seed(100)
+#batch_100 <- sample(agents, 100)
+assign("cache", new.env(), envir=uaparserjs:::.pkgenv)
+microbenchmark::microbenchmark(
+  ua_parse(agents,useNA=TRUE)
+)
+
+```
+### Effect of useNA 
+
+This addresses relative performance with and without the useNA flag.  This test exercises the plumbing 
+that handles unpacking the parameter list and compilation of the results with effectively no cache involvement. This test minimises the effect of caching by using the same UA string over and over.  This test does not call the underlying Javascript parser repeatedly, 
+values are passed to the JavaScript parser one at a time and parse results are cached for each user agent.   
+
+```{r echo=FALSE}
+
+options(scipen=999)
+unloadNamespace("usparserjs") # clear cache
+
+workingUA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.10 Chromium/15.0.874.106 Chrome/15.0.874.106 Safari/535.2"
+#counts = c(10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000)
+counts = c(10, 50, 100, 500, 1000, 5000, 10000, 50000)
+
+naFlags = c(TRUE, FALSE)
+
+results = c()
+
+for(f in naFlags)
+{
+  for(i in counts)
+  {
+    bmResult = microbenchmark::microbenchmark(uaparserjs::ua_parse(rep(workingUA,i),useNA = f),times = 1)
+    bmResult$UAcount = i
+    bmResult$useNA = f
+    results = c(results, list(bmResult))
+  }  
+}
+
+results2 = do.call("rbind", results)
+
+results2$timesec = results2$time/1000000000
+
+library(ggplot2) 
+
+ggplot(results2, aes(UAcount)) + 
+ aes(x=UAcount, y=timesec, colour=useNA) + 
+ geom_line() +
+ labs(
+    title = "Elapsed Time for varying numbers of user agent strings per request",
+    subtitle = "Empty Cache",
+    x = "Number of User Agent Strings",
+    y = "Elased Time (seconds)",
+    color = "useNA parameter values"
+  )
+
 ```
 
-## Code of Conduct
+#### Raw data
+```{r}
+class(results2) = "data.frame"
+results2
+```
+### Effect of cache misses with large cache sizes 
 
-Please note that this project is released with a Contributor Code of Conduct. 
-By participating in this project you agree to abide by its terms.
+This examines the worst-case effect of cache misses with large cache sizes.  The cache is populated with a number of unique strings, the number matching the test case size.  
+Every measured call experiences that number of cache misses before finding its value in the cache, for example with 1000 User Agent strings passed in 
+1000 unique cache entries are created before the test and the test finds the last cache entry.  
+
+The test is coded to force use of a list() because list will be removed in the next release (see test results below).
+```{r}
+results = c()
+
+for(f in naFlags)
+{
+  for(i in counts)
+  {
+    unloadNamespace("uaparserjs")
+    assign("cache", list(), envir=uaparserjs:::.pkgenv)
+
+    for(j in 1:i)
+    {
+      # fake the right number of UA strings for this request cycle
+      uaparserjs::ua_parse(paste(j, workingUA),useNA = TRUE)
+    }
+    bmResult = microbenchmark::microbenchmark(uaparserjs::ua_parse(rep(workingUA,i),useNA = f),times = 1)
+    bmResult$UAcount = i
+    bmResult$useNA = f
+    results = c(results, list(bmResult))
+  }  
+}
+
+results2 = do.call("rbind", results)
+
+results2$timesec = results2$time/1000000000
+
+library(ggplot2) 
+
+ggplot(results2, aes(UAcount)) + 
+ aes(x=UAcount, y=timesec, colour=useNA) + 
+ geom_line() +
+ labs(
+    title = "Elapsed Time for varying numbers of user agent strings per request",
+    subtitle = "100% cache misses, cache size = request size",
+    x = "Number of User Agent Strings",
+    y = "Elased Time (seconds)",
+    color = "useNA parameter values"
+  )
+
+
+```
+
+#### Raw Data
+```{r}
+class(results2) = "data.frame"
+results2
+```
+
+### Effect of cache misses with large cache sizes using an environment instead of list as cache.  
+
+Using an environment, the only native hashmap structure in base R, worst case performance is significantly better than using a list.  How much this matters depends very much on the distribution of UAs in the input data, but when dealing with two to four million access log records its worth recovering every possible second.   
+
+```{r}
+
+results = c()
+
+library(uaparserjs)
+
+for(f in naFlags)
+{
+  for(i in counts)
+  {
+    assign("cache", new.env(), envir=uaparserjs:::.pkgenv)
+    for(j in 1:i)
+    {
+      # fake the right number of UA strings for this request cycle
+      uaparserjs::ua_parse(paste(j, workingUA),useNA = TRUE)
+    }
+    bmResult = microbenchmark::microbenchmark(uaparserjs::ua_parse(rep(workingUA,i),useNA = f),times = 1)
+    bmResult$UAcount = i
+    bmResult$useNA = f
+    results = c(results, list(bmResult))
+  }  
+}
+
+results3 = do.call("rbind", results)
+
+results3$timesec = results3$time/1000000000
+
+library(ggplot2) 
+
+ggplot(results3, aes(UAcount)) + 
+ aes(x=UAcount, y=timesec, colour=useNA) + 
+ geom_line() +
+ labs(
+    title = "Elapsed Time for varying numbers of user agent strings per request",
+    subtitle = "100% cache misses, cache size = request size",
+    x = "Number of User Agent Strings",
+    y = "Elased Time (seconds)",
+    color = "useNA parameter values"
+  )
+
+```
+
+#### Raw Data
+```{r}
+class(results3) = "data.frame"
+results3
+```
+

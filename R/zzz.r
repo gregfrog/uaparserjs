@@ -21,14 +21,12 @@
   ctx <- v8()
   ctx$source(system.file("js/bundle.js", package="uaparserjs"))
   ctx$eval(JS('var parser = uap(regexes)'))
-  
+
   tibbleAvailable = requireNamespace("tibble", quietly = TRUE)
 
   assign("ctx", ctx, envir=.pkgenv)
   assign("tibbleAvailable", tibbleAvailable, envir=.pkgenv)
 
-  cache <- list()
-
-  assign("cache", cache, envir=.pkgenv)
+  assign("cache", new.env(), envir=.pkgenv)
 
 }

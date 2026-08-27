@@ -1,7 +1,6 @@
 .*\.Rproj
 README\.Rmd
 README\.md
-README_files
 \.git
 build
 \.github
@@ -10,3 +9,5 @@ build
 \.lintr
 .*\.Rcheck
 .*\.gz
+.vscode
+Makefile

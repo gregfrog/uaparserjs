@@ -39,16 +39,17 @@ ua_parse <- function(user_agents, .progress=FALSE, useNA=FALSE) {
       } else {
 
 # ghastly thing below to maintain compatibility with an existing bug where a zero length string returns an empty data frame
-# regardless of how it parsed, adding a prefix to the cache key to distingush the different code paths stopped it deleting the cache entry 
-# and instead was returning the parsed value 
+# regardless of how it parsed, adding a prefix to the cache key to distingush the different code paths stopped it deleting the cache entry
+# and instead was returning the parsed value
 
         if(!is.na(x) && !is.null(x) && x == "")
         {
           return(internal_as_tibble(list()))
         }
-
-        .pkgenv$cache[[x]] <- internal_as_tibble(as.list(unlist(.pkgenv$ctx$call("parser.parse", x))))
-        return(.pkgenv$cache[[x]])
+        callres = .pkgenv$ctx$call("parser.parse", x)
+        tibbleres <- internal_as_tibble(as.list(unlist(callres)))
+        .pkgenv$cache[[cacheKey]] <- tibbleres
+        return(tibbleres)
 
       }
 
@@ -91,8 +92,8 @@ parseWithNA <- function(user_agents, .progress=FALSE)
         return(res)
       }
     }
-
-    wk2 = as.list(unlist(nullToNA(.pkgenv$ctx$call("parser.parse", x))))
+    wk3 = .pkgenv$ctx$call("parser.parse", x)
+    wk2 = as.list(unlist(nullToNA(wk3)))
     if(cacheable)
     {
       .pkgenv$cache[[cacheKey]] = wk2

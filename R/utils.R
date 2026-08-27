@@ -66,4 +66,4 @@ nullToNA <- function(x) {
 
 get_cache <- function() { .pkgenv$cache }
 
-cache_reset <- function() { .pkgenv$cache = list() }
+cache_reset <- function(cacheObject = new.env()) { .pkgenv$cache = cacheObject }

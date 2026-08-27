@@ -1,3 +1,8 @@
+# 0.4.1 (2026-07-02)
+* Note: Includes UAP-Core regexes.yaml commits up to: Mon Aug 24 13:09:38 2026 +0100 73e7340
+* Changed cache from list to env (see README.md for details)
+* added tests 
+
 # 0.4.0 (2026-07-02)
 * Note: Includes UAP-Core regexes.yaml commits up to: Tue May 26 15:01:27 2026 +0100 5bf1320
 * Added useNA flag to return NA values instead of omitting rows or columns in the tibble, this

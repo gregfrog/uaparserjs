@@ -51,13 +51,13 @@ NA), os.minor = c("10", NA, NA, NA), device.family = c("Other",
 "Motorola", NA), device.model = c(NA, NA, "g(6)", NA)), row.names = c(NA,
 -4L), class = c("tbl_df", "tbl", "data.frame"))
 
-expect_equal(nrow(res), 4, info="useNA FALSE in multi-row check")
-expect_equal(res, oldres, info="useNA FALSE in multi-row check")
+# NA values were being dropped altering the relative position of UAs and results
+expect_equal(res[!is.na(res$userAgent),], oldres, info="useNA FALSE in multi-row check (2)")
 
-res = uaparserjs::ua_parse(uas_test$uastrings, useNA = TRUE)
+resNA = uaparserjs::ua_parse(uas_test$uastrings, useNA = TRUE)
 
 # dumped output from useNA code
-NAres <-
+oldNAres <-
 structure(list(userAgent = c("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, like Gecko) Ubuntu/11.10 Chromium/15.0.874.106 Chrome/15.0.874.106 Safari/535.2",
 "", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
 NA, "Mozilla/5.0 (Linux; Android 9; moto g(6)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.210 Mobile Safari/537.36",
@@ -75,12 +75,14 @@ NA_character_, NA_character_, NA_character_, NA_character_),
     NA, "g(6)", NA)), class = c("tbl_df", "tbl", "data.frame"
 ), row.names = c(NA, -6L))
 
-expect_equal(nrow(res), 6, info="useNA TRUE in multi-row check")
-expect_equal(res, NAres, info="useNA TRUE in multi-row check")
+expect_equal(nrow(resNA), 6, info="useNA TRUE in multi-row check (3)")
+expect_equal(resNA, oldNAres, info="useNA TRUE in multi-row check (4)")
 
 # permutation code copied from https://stackoverflow.com/questions/11095992/generating-all-distinct-permutations-of-a-list-in-r
 # under CC SA license
 #
+
+
 
 getPermutations <- function(x) {
     if (length(x) == 1) {
@@ -94,6 +96,7 @@ getPermutations <- function(x) {
         return(res)
     }
 }
+
 
 permutations = unique(getPermutations(list("", "", " ", " ", NA, NA, "aaa", paste0("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.2 (KHTML, ",
            "like Gecko) Ubuntu/11.10 Chromium/15.0.874.106 ",
@@ -114,9 +117,9 @@ numPerms = dim(permutations)[1]
 # for each combination
 for(i in 1:numPerms)
 {
-    res = uaparserjs::ua_parse(unlist(permutations[i,]), useNA=TRUE)
-    for(j in seq_along(length(res)))
+    permResult = uaparserjs::ua_parse(unlist(permutations[i,]), useNA=TRUE)
+    for(j in seq_along(length(permResult)))
     {
-       expect_equal(res[j,], templateResult[[deparse(unlist(permutations[i,j]))]], info=permutations[i,j])
+       expect_equal(permResult[j,], templateResult[[deparse(unlist(permutations[i,j]))]], info=permutations[i,j])
     }
 }

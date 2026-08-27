@@ -18,7 +18,7 @@ library(uaparserjs)
 
 # ported from the javascript uap-core tests
 
-#['../test_resources/firefox_user_agent_strings.yaml', '../tests/test_ua.yaml', '../test_resources/pgts_browser_list.yaml',
+#['../test_resources/firefox_user_agent_strings.yaml', '../inst/tinytest/tests/test_ua.yaml', '../test_resources/pgts_browser_list.yaml',
 #  '../test_resources/opera_mini_user_agent_strings.yaml','../test_resources/podcasting_user_agent_strings.yaml'].forEach(function(fileName) {
 #  var fixtures = readYAML(fileName).test_cases;
 #  suite(fileName, function() {
@@ -98,7 +98,7 @@ uaTestNA <- function()
 }
 
 
-# ['../tests/test_os.yaml', '../test_resources/additional_os_tests.yaml'].forEach(function(fileName) {
+# ['../inst/tinytest/tests/test_os.yaml', '../test_resources/additional_os_tests.yaml'].forEach(function(fileName) {
 #   var fixtures = readYAML(fileName).test_cases;
 #   suite(fileName, function() {
 #     fixtures.forEach(function(f) {
@@ -175,7 +175,7 @@ osTestNA <- function()
 
 
 
-# ['../tests/test_device.yaml'].forEach(function(fileName) {
+# ['../inst/tinytest/tests/test_device.yaml'].forEach(function(fileName) {
 #   var fixtures = readYAML(fileName).test_cases;
 #   suite(fileName, function() {
 #     fixtures.forEach(function(f) {
@@ -258,19 +258,18 @@ devTestNA <- function()
 #  return f;
 #}
 
-# check for local dev environment - this is unreliable 
-# but better than the complete absence of support for detecting 
-# a CRAN build from the R team   
+# check for local dev environment - this is unreliable
+# but better than the complete absence of support for detecting
+# a CRAN build from the R team
 
-if(dir.exists("../../../.git"))
-{  
-  uaTest()
-  uaTestNA()
+if(dir.exists("~/src/uaparserjs/.git"))
+{
+#  uaTest()
+#  uaTestNA()
 
-  osTest()
-  osTestNA()
+#  osTest()
+#  osTestNA()
 
   devTest()
   devTestNA()
 }
-

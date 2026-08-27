@@ -110,7 +110,7 @@ const sandbox = {
   result: ""
 };
 
-fileContent = fs.readFileSync("/home/greg/src/wk2/uaparserjs/build/dist/bundle.js", { encoding: 'utf8', flag: 'r' })
+fileContent = fs.readFileSync("/home/greg/src/uaparserjs/build/dist/bundle.js", { encoding: 'utf8', flag: 'r' })
 const script = new vm.Script(fileContent);
 
 const context = new vm.createContext(sandbox);

@@ -2,7 +2,7 @@ Package: uaparserjs
 Type: Package
 Title: Parse 'User-Agent' Strings
 Version: 0.4.1
-Date: 2026-07-09
+Date: 2026-08-26
 Authors@R: c(
     person("Bob", "Rudis", , "bob@rud.is", role = c("aut", "cph")),
     person("Greg", "Hunt", , "greg@firmansyah.com", role = c("aut", "cre", "cph")),
@@ -11,8 +11,9 @@ Authors@R: c(
     person("Colman", "Humphrey", role = "ctb"),
     person("Jim", "Vine", role = "ctb"))
 Description: 
-    Parses HTTP user agent strings and returns user agent, device and OS information.  This is a 'V8'-backed package
-    based on the 'ua-parser' project <https://github.com/ua-parser>.
+    Parses HTTP user agent strings and returns user agent, device and OS information.  
+    This is a ‘V8’-backed package that uses the UA, device and OS definitions from the ‘ua-parser’
+    project <https://github.com/ua-parser>.
 URL: https://github.com/gregfrog/uaparserjs
 BugReports: https://github.com/gregfrog/uaparserjs/issues
 License: Apache License 2.0 | file LICENSE

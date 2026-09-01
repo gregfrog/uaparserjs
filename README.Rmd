@@ -165,7 +165,7 @@ for(f in naFlags)
       # fake the right number of UA strings for this request cycle
       uaparserjs::ua_parse(paste(j, workingUA),useNA = TRUE)
     }
-    bmResult = microbenchmark::microbenchmark(uaparserjs::ua_parse(rep(workingUA, 1000), useNA = f), times = 1)
+    bmResult = microbenchmark::microbenchmark(uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)), useNA = f), times = 1)
     bmResult$UAcount = i
     bmResult$useNA = f
     bmResult$cacheType = "list"
@@ -184,7 +184,7 @@ for(f in naFlags)
       # fake the right number of UA strings for this request cycle
       uaparserjs::ua_parse(paste(j, workingUA), useNA = TRUE)
     }
-    bmResult = microbenchmark::microbenchmark(uaparserjs::ua_parse(rep(workingUA, 1000), useNA = f), times = 1)
+    bmResult = microbenchmark::microbenchmark(uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)), useNA = f), times = 1)
     bmResult$UAcount = i
     bmResult$useNA = f
     bmResult$cacheType = "env"

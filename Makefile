@@ -1,5 +1,5 @@
 .DEFAULT_GOAL = all
-.PHONY: readme js package all
+.PHONY: readme js package install all
 
 readme:
 	rm -f man/figures/README* ; Rscript -e "rmarkdown::render('README.Rmd', output_file='README.md', output_format='github_document')"

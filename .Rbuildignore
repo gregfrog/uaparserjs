@@ -1,5 +1,6 @@
 .*\.Rproj
-README\.md
+README\.Rmd
+README\.html
 \.git
 build
 \.github

@@ -94,7 +94,7 @@ microbenchmark::microbenchmark(
 
     ## Unit: milliseconds
     ##              expr      min       lq     mean   median       uq      max neval
-    ##  ua_parse(agents) 286.0651 312.7861 334.4441 329.1934 339.3808 1153.523   100
+    ##  ua_parse(agents) 294.5307 318.0172 340.5518 334.5562 348.2405 1144.273   100
 
 ### Time for parsing small numbers of UA strings with useNA defaulting to FALSE and an env type cache
 
@@ -107,8 +107,8 @@ microbenchmark::microbenchmark(
 ```
 
     ## Unit: milliseconds
-    ##              expr      min       lq     mean   median       uq      max neval
-    ##  ua_parse(agents) 291.1911 311.9968 333.8409 326.0195 336.7081 1099.453   100
+    ##              expr      min       lq     mean  median       uq      max neval
+    ##  ua_parse(agents) 291.8168 317.7188 348.6002 333.535 352.0616 1108.954   100
 
 ### Time for parsing small numbers of UA strings with useNA=TRUE and list cache
 
@@ -122,9 +122,9 @@ microbenchmark::microbenchmark(
 
     ## Unit: milliseconds
     ##                            expr      min       lq     mean   median       uq
-    ##  ua_parse(agents, useNA = TRUE) 30.37149 31.90046 39.17526 33.82008 35.04215
+    ##  ua_parse(agents, useNA = TRUE) 30.25396 32.86566 40.10931 34.39497 35.67279
     ##       max neval
-    ##  532.2606   100
+    ##  572.7531   100
 
 ### Time for parsing small numbers of UA strings with environment cache and useNA=TRUE
 
@@ -138,9 +138,9 @@ microbenchmark::microbenchmark(
 
     ## Unit: milliseconds
     ##                            expr      min       lq     mean   median       uq
-    ##  ua_parse(agents, useNA = TRUE) 27.33492 29.76366 36.18781 31.30677 32.97265
+    ##  ua_parse(agents, useNA = TRUE) 27.25008 30.38409 37.46013 31.97144 34.39136
     ##       max neval
-    ##  505.8763   100
+    ##  524.0062   100
 
 ### The effect of the useNA plumbing changes and number of UAs
 
@@ -205,66 +205,66 @@ results2
 
     ##                                                                                    expr
     ## 1                                    uaparserjs::ua_parse(rep(workingUA, i), useNA = f)
-    ## 2         uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2031206, 50, TRUE)
-    ## 3        uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3371444, 100, TRUE)
-    ## 4       uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 11532579, 500, TRUE)
-    ## 5      uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 22723446, 1000, TRUE)
-    ## 6     uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 122816065, 5000, TRUE)
-    ## 7    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 299110944, 10000, TRUE)
-    ## 8    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 368028699, 15000, TRUE)
-    ## 9    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 503995104, 20000, TRUE)
-    ## 10   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 628256462, 25000, TRUE)
-    ## 11   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 780175659, 30000, TRUE)
-    ## 12   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 891129271, 35000, TRUE)
-    ## 13  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1049337750, 40000, TRUE)
-    ## 14  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1197549630, 45000, TRUE)
-    ## 15  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1288802404, 50000, TRUE)
-    ## 16       uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2559195, 10, FALSE)
-    ## 17       uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3969100, 50, FALSE)
-    ## 18      uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 7263871, 100, FALSE)
-    ## 19     uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 37692507, 500, FALSE)
-    ## 20    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 77255538, 1000, FALSE)
-    ## 21   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 412946493, 5000, FALSE)
-    ## 22  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 802051579, 10000, FALSE)
-    ## 23 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1195821039, 15000, FALSE)
-    ## 24 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1521754679, 20000, FALSE)
-    ## 25 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1935462944, 25000, FALSE)
-    ## 26 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2361476534, 30000, FALSE)
-    ## 27 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2721711172, 35000, FALSE)
-    ## 28 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3118872173, 40000, FALSE)
-    ## 29 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3533696610, 45000, FALSE)
-    ## 30 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3882980571, 50000, FALSE)
+    ## 2         uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2092145, 50, TRUE)
+    ## 3        uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3033528, 100, TRUE)
+    ## 4       uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 11815560, 500, TRUE)
+    ## 5      uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 26587571, 1000, TRUE)
+    ## 6     uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 136240545, 5000, TRUE)
+    ## 7    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 298674586, 10000, TRUE)
+    ## 8    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 377964783, 15000, TRUE)
+    ## 9    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 516710348, 20000, TRUE)
+    ## 10   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 665461045, 25000, TRUE)
+    ## 11   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 806556960, 30000, TRUE)
+    ## 12   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 893212928, 35000, TRUE)
+    ## 13  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1051374793, 40000, TRUE)
+    ## 14  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1241690362, 45000, TRUE)
+    ## 15  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1312724278, 50000, TRUE)
+    ## 16       uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2536549, 10, FALSE)
+    ## 17       uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3917369, 50, FALSE)
+    ## 18      uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 7488830, 100, FALSE)
+    ## 19     uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 37849645, 500, FALSE)
+    ## 20    uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 81026459, 1000, FALSE)
+    ## 21   uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 399110346, 5000, FALSE)
+    ## 22  uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 823132758, 10000, FALSE)
+    ## 23 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1278412022, 15000, FALSE)
+    ## 24 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 1651392396, 20000, FALSE)
+    ## 25 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2218048992, 25000, FALSE)
+    ## 26 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2756208048, 30000, FALSE)
+    ## 27 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 2932352811, 35000, FALSE)
+    ## 28 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3359748246, 40000, FALSE)
+    ## 29 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 3838969074, 45000, FALSE)
+    ## 30 uaparserjs::ua_parse(rep(workingUA, i), useNA = f).list(1, 4300164261, 50000, FALSE)
     ##          time UAcount useNA     timesec
-    ## 1     2359701      10  TRUE 0.002359701
-    ## 2     2031206      50  TRUE 0.002031206
-    ## 3     3371444     100  TRUE 0.003371444
-    ## 4    11532579     500  TRUE 0.011532579
-    ## 5    22723446    1000  TRUE 0.022723446
-    ## 6   122816065    5000  TRUE 0.122816065
-    ## 7   299110944   10000  TRUE 0.299110944
-    ## 8   368028699   15000  TRUE 0.368028699
-    ## 9   503995104   20000  TRUE 0.503995104
-    ## 10  628256462   25000  TRUE 0.628256462
-    ## 11  780175659   30000  TRUE 0.780175659
-    ## 12  891129271   35000  TRUE 0.891129271
-    ## 13 1049337750   40000  TRUE 1.049337750
-    ## 14 1197549630   45000  TRUE 1.197549630
-    ## 15 1288802404   50000  TRUE 1.288802404
-    ## 16    2559195      10 FALSE 0.002559195
-    ## 17    3969100      50 FALSE 0.003969100
-    ## 18    7263871     100 FALSE 0.007263871
-    ## 19   37692507     500 FALSE 0.037692507
-    ## 20   77255538    1000 FALSE 0.077255538
-    ## 21  412946493    5000 FALSE 0.412946493
-    ## 22  802051579   10000 FALSE 0.802051579
-    ## 23 1195821039   15000 FALSE 1.195821039
-    ## 24 1521754679   20000 FALSE 1.521754679
-    ## 25 1935462944   25000 FALSE 1.935462944
-    ## 26 2361476534   30000 FALSE 2.361476534
-    ## 27 2721711172   35000 FALSE 2.721711172
-    ## 28 3118872173   40000 FALSE 3.118872173
-    ## 29 3533696610   45000 FALSE 3.533696610
-    ## 30 3882980571   50000 FALSE 3.882980571
+    ## 1     2163836      10  TRUE 0.002163836
+    ## 2     2092145      50  TRUE 0.002092145
+    ## 3     3033528     100  TRUE 0.003033528
+    ## 4    11815560     500  TRUE 0.011815560
+    ## 5    26587571    1000  TRUE 0.026587571
+    ## 6   136240545    5000  TRUE 0.136240545
+    ## 7   298674586   10000  TRUE 0.298674586
+    ## 8   377964783   15000  TRUE 0.377964783
+    ## 9   516710348   20000  TRUE 0.516710348
+    ## 10  665461045   25000  TRUE 0.665461045
+    ## 11  806556960   30000  TRUE 0.806556960
+    ## 12  893212928   35000  TRUE 0.893212928
+    ## 13 1051374793   40000  TRUE 1.051374793
+    ## 14 1241690362   45000  TRUE 1.241690362
+    ## 15 1312724278   50000  TRUE 1.312724278
+    ## 16    2536549      10 FALSE 0.002536549
+    ## 17    3917369      50 FALSE 0.003917369
+    ## 18    7488830     100 FALSE 0.007488830
+    ## 19   37849645     500 FALSE 0.037849645
+    ## 20   81026459    1000 FALSE 0.081026459
+    ## 21  399110346    5000 FALSE 0.399110346
+    ## 22  823132758   10000 FALSE 0.823132758
+    ## 23 1278412022   15000 FALSE 1.278412022
+    ## 24 1651392396   20000 FALSE 1.651392396
+    ## 25 2218048992   25000 FALSE 2.218048992
+    ## 26 2756208048   30000 FALSE 2.756208048
+    ## 27 2932352811   35000 FALSE 2.932352811
+    ## 28 3359748246   40000 FALSE 3.359748246
+    ## 29 3838969074   45000 FALSE 3.838969074
+    ## 30 4300164261   50000 FALSE 4.300164261
 
 ### Effect of cache misses with large cache sizes
 
@@ -347,123 +347,123 @@ results2
 
     ##                                                                                                                          expr
     ## 1                                             uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f)
-    ## 2        uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 621056436, 50, TRUE, "list")
-    ## 3       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 621019263, 100, TRUE, "list")
-    ## 4       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 631677582, 500, TRUE, "list")
-    ## 5      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 660802974, 1000, TRUE, "list")
-    ## 6     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1053316468, 5000, TRUE, "list")
-    ## 7    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1884716711, 10000, TRUE, "list")
-    ## 8    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 3004099821, 15000, TRUE, "list")
-    ## 9    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 4081489022, 20000, TRUE, "list")
-    ## 10   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 5075107387, 25000, TRUE, "list")
-    ## 11   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 6089417641, 30000, TRUE, "list")
-    ## 12   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 7124621141, 35000, TRUE, "list")
-    ## 13   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 8069825991, 40000, TRUE, "list")
-    ## 14   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 9151766994, 45000, TRUE, "list")
-    ## 15  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 10519365850, 50000, TRUE, "list")
-    ## 16      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 984056454, 10, FALSE, "list")
-    ## 17     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1018056639, 50, FALSE, "list")
-    ## 18     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 978591616, 100, FALSE, "list")
-    ## 19    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1009623169, 500, FALSE, "list")
-    ## 20   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1093866967, 1000, FALSE, "list")
-    ## 21   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1580656442, 5000, FALSE, "list")
-    ## 22  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 2645265514, 10000, FALSE, "list")
-    ## 23  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 3701779638, 15000, FALSE, "list")
-    ## 24  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 4715808692, 20000, FALSE, "list")
-    ## 25  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 5885682297, 25000, FALSE, "list")
-    ## 26  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 6942344965, 30000, FALSE, "list")
-    ## 27  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 7877776450, 35000, FALSE, "list")
-    ## 28  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 8921522524, 40000, FALSE, "list")
-    ## 29  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 9774548081, 45000, FALSE, "list")
-    ## 30 uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 10900086396, 50000, FALSE, "list")
-    ## 31        uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 553744825, 10, TRUE, "env")
-    ## 32        uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 562765072, 50, TRUE, "env")
-    ## 33       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 555912735, 100, TRUE, "env")
-    ## 34       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 562743576, 500, TRUE, "env")
-    ## 35      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 552916874, 1000, TRUE, "env")
-    ## 36      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 563187269, 5000, TRUE, "env")
-    ## 37     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 557852538, 10000, TRUE, "env")
-    ## 38     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 568570687, 15000, TRUE, "env")
-    ## 39     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 563116628, 20000, TRUE, "env")
-    ## 40     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 621873441, 25000, TRUE, "env")
-    ## 41     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 605822958, 30000, TRUE, "env")
-    ## 42     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 573075960, 35000, TRUE, "env")
-    ## 43     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 602794655, 40000, TRUE, "env")
-    ## 44     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 650638213, 45000, TRUE, "env")
-    ## 45     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 611983146, 50000, TRUE, "env")
-    ## 46      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1069995993, 10, FALSE, "env")
-    ## 47       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 976562508, 50, FALSE, "env")
-    ## 48      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 993689050, 100, FALSE, "env")
-    ## 49      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 995356890, 500, FALSE, "env")
-    ## 50     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 960390004, 1000, FALSE, "env")
-    ## 51     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 974307042, 5000, FALSE, "env")
-    ## 52    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 977493712, 10000, FALSE, "env")
-    ## 53   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1036015758, 15000, FALSE, "env")
-    ## 54   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1049720957, 20000, FALSE, "env")
-    ## 55   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1051404521, 25000, FALSE, "env")
-    ## 56    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 984003147, 30000, FALSE, "env")
-    ## 57   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1053376474, 35000, FALSE, "env")
-    ## 58   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1208410751, 40000, FALSE, "env")
-    ## 59   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1036220615, 45000, FALSE, "env")
-    ## 60   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1063299904, 50000, FALSE, "env")
+    ## 2        uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 743330093, 50, TRUE, "list")
+    ## 3       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 687023475, 100, TRUE, "list")
+    ## 4       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 712953112, 500, TRUE, "list")
+    ## 5      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 940112986, 1000, TRUE, "list")
+    ## 6     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1663434339, 5000, TRUE, "list")
+    ## 7    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 2138156294, 10000, TRUE, "list")
+    ## 8    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 3156099939, 15000, TRUE, "list")
+    ## 9    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 4268484835, 20000, TRUE, "list")
+    ## 10   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 5285002119, 25000, TRUE, "list")
+    ## 11   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 6167056692, 30000, TRUE, "list")
+    ## 12   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 7261052530, 35000, TRUE, "list")
+    ## 13   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 8366200971, 40000, TRUE, "list")
+    ## 14   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 9765528485, 45000, TRUE, "list")
+    ## 15  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 10562146640, 50000, TRUE, "list")
+    ## 16     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1050952012, 10, FALSE, "list")
+    ## 17     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1000691818, 50, FALSE, "list")
+    ## 18    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1056623206, 100, FALSE, "list")
+    ## 19    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1096723962, 500, FALSE, "list")
+    ## 20   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1087142369, 1000, FALSE, "list")
+    ## 21   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1669946347, 5000, FALSE, "list")
+    ## 22  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 2716496664, 10000, FALSE, "list")
+    ## 23  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 3830489290, 15000, FALSE, "list")
+    ## 24  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 4834051900, 20000, FALSE, "list")
+    ## 25  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 5755483595, 25000, FALSE, "list")
+    ## 26  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 6875118765, 30000, FALSE, "list")
+    ## 27  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 7837714929, 35000, FALSE, "list")
+    ## 28  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 8954524515, 40000, FALSE, "list")
+    ## 29  uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 9943655351, 45000, FALSE, "list")
+    ## 30 uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 10698030766, 50000, FALSE, "list")
+    ## 31        uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 577996189, 10, TRUE, "env")
+    ## 32        uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 553920012, 50, TRUE, "env")
+    ## 33       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 577584400, 100, TRUE, "env")
+    ## 34       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 557248263, 500, TRUE, "env")
+    ## 35      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 558087857, 1000, TRUE, "env")
+    ## 36      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 565963340, 5000, TRUE, "env")
+    ## 37     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 574153458, 10000, TRUE, "env")
+    ## 38     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 585513042, 15000, TRUE, "env")
+    ## 39     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 581104190, 20000, TRUE, "env")
+    ## 40     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 600090411, 25000, TRUE, "env")
+    ## 41     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 583665668, 30000, TRUE, "env")
+    ## 42     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 593303365, 35000, TRUE, "env")
+    ## 43     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 594791427, 40000, TRUE, "env")
+    ## 44     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 623277780, 45000, TRUE, "env")
+    ## 45     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 607557833, 50000, TRUE, "env")
+    ## 46      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1015877591, 10, FALSE, "env")
+    ## 47       uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 981468429, 50, FALSE, "env")
+    ## 48      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 994682917, 100, FALSE, "env")
+    ## 49      uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 991182569, 500, FALSE, "env")
+    ## 50     uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 979488311, 1000, FALSE, "env")
+    ## 51    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1127760104, 5000, FALSE, "env")
+    ## 52    uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 996012819, 10000, FALSE, "env")
+    ## 53   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1003847312, 15000, FALSE, "env")
+    ## 54   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1110177655, 20000, FALSE, "env")
+    ## 55   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1005557354, 25000, FALSE, "env")
+    ## 56   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1111310383, 30000, FALSE, "env")
+    ## 57   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1049311833, 35000, FALSE, "env")
+    ## 58   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1241422736, 40000, FALSE, "env")
+    ## 59   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1101028473, 45000, FALSE, "env")
+    ## 60   uaparserjs::ua_parse(paste(rep(workingUA, 1000), seq(1, 1000)),      useNA = f).list(1, 1034865971, 50000, FALSE, "env")
     ##           time UAcount useNA cacheType    timesec
-    ## 1    650188278      10  TRUE      list  0.6501883
-    ## 2    621056436      50  TRUE      list  0.6210564
-    ## 3    621019263     100  TRUE      list  0.6210193
-    ## 4    631677582     500  TRUE      list  0.6316776
-    ## 5    660802974    1000  TRUE      list  0.6608030
-    ## 6   1053316468    5000  TRUE      list  1.0533165
-    ## 7   1884716711   10000  TRUE      list  1.8847167
-    ## 8   3004099821   15000  TRUE      list  3.0040998
-    ## 9   4081489022   20000  TRUE      list  4.0814890
-    ## 10  5075107387   25000  TRUE      list  5.0751074
-    ## 11  6089417641   30000  TRUE      list  6.0894176
-    ## 12  7124621141   35000  TRUE      list  7.1246211
-    ## 13  8069825991   40000  TRUE      list  8.0698260
-    ## 14  9151766994   45000  TRUE      list  9.1517670
-    ## 15 10519365850   50000  TRUE      list 10.5193658
-    ## 16   984056454      10 FALSE      list  0.9840565
-    ## 17  1018056639      50 FALSE      list  1.0180566
-    ## 18   978591616     100 FALSE      list  0.9785916
-    ## 19  1009623169     500 FALSE      list  1.0096232
-    ## 20  1093866967    1000 FALSE      list  1.0938670
-    ## 21  1580656442    5000 FALSE      list  1.5806564
-    ## 22  2645265514   10000 FALSE      list  2.6452655
-    ## 23  3701779638   15000 FALSE      list  3.7017796
-    ## 24  4715808692   20000 FALSE      list  4.7158087
-    ## 25  5885682297   25000 FALSE      list  5.8856823
-    ## 26  6942344965   30000 FALSE      list  6.9423450
-    ## 27  7877776450   35000 FALSE      list  7.8777764
-    ## 28  8921522524   40000 FALSE      list  8.9215225
-    ## 29  9774548081   45000 FALSE      list  9.7745481
-    ## 30 10900086396   50000 FALSE      list 10.9000864
-    ## 31   553744825      10  TRUE       env  0.5537448
-    ## 32   562765072      50  TRUE       env  0.5627651
-    ## 33   555912735     100  TRUE       env  0.5559127
-    ## 34   562743576     500  TRUE       env  0.5627436
-    ## 35   552916874    1000  TRUE       env  0.5529169
-    ## 36   563187269    5000  TRUE       env  0.5631873
-    ## 37   557852538   10000  TRUE       env  0.5578525
-    ## 38   568570687   15000  TRUE       env  0.5685707
-    ## 39   563116628   20000  TRUE       env  0.5631166
-    ## 40   621873441   25000  TRUE       env  0.6218734
-    ## 41   605822958   30000  TRUE       env  0.6058230
-    ## 42   573075960   35000  TRUE       env  0.5730760
-    ## 43   602794655   40000  TRUE       env  0.6027947
-    ## 44   650638213   45000  TRUE       env  0.6506382
-    ## 45   611983146   50000  TRUE       env  0.6119831
-    ## 46  1069995993      10 FALSE       env  1.0699960
-    ## 47   976562508      50 FALSE       env  0.9765625
-    ## 48   993689050     100 FALSE       env  0.9936890
-    ## 49   995356890     500 FALSE       env  0.9953569
-    ## 50   960390004    1000 FALSE       env  0.9603900
-    ## 51   974307042    5000 FALSE       env  0.9743070
-    ## 52   977493712   10000 FALSE       env  0.9774937
-    ## 53  1036015758   15000 FALSE       env  1.0360158
-    ## 54  1049720957   20000 FALSE       env  1.0497210
-    ## 55  1051404521   25000 FALSE       env  1.0514045
-    ## 56   984003147   30000 FALSE       env  0.9840031
-    ## 57  1053376474   35000 FALSE       env  1.0533765
-    ## 58  1208410751   40000 FALSE       env  1.2084108
-    ## 59  1036220615   45000 FALSE       env  1.0362206
-    ## 60  1063299904   50000 FALSE       env  1.0632999
+    ## 1    770559222      10  TRUE      list  0.7705592
+    ## 2    743330093      50  TRUE      list  0.7433301
+    ## 3    687023475     100  TRUE      list  0.6870235
+    ## 4    712953112     500  TRUE      list  0.7129531
+    ## 5    940112986    1000  TRUE      list  0.9401130
+    ## 6   1663434339    5000  TRUE      list  1.6634343
+    ## 7   2138156294   10000  TRUE      list  2.1381563
+    ## 8   3156099939   15000  TRUE      list  3.1560999
+    ## 9   4268484835   20000  TRUE      list  4.2684848
+    ## 10  5285002119   25000  TRUE      list  5.2850021
+    ## 11  6167056692   30000  TRUE      list  6.1670567
+    ## 12  7261052530   35000  TRUE      list  7.2610525
+    ## 13  8366200971   40000  TRUE      list  8.3662010
+    ## 14  9765528485   45000  TRUE      list  9.7655285
+    ## 15 10562146640   50000  TRUE      list 10.5621466
+    ## 16  1050952012      10 FALSE      list  1.0509520
+    ## 17  1000691818      50 FALSE      list  1.0006918
+    ## 18  1056623206     100 FALSE      list  1.0566232
+    ## 19  1096723962     500 FALSE      list  1.0967240
+    ## 20  1087142369    1000 FALSE      list  1.0871424
+    ## 21  1669946347    5000 FALSE      list  1.6699463
+    ## 22  2716496664   10000 FALSE      list  2.7164967
+    ## 23  3830489290   15000 FALSE      list  3.8304893
+    ## 24  4834051900   20000 FALSE      list  4.8340519
+    ## 25  5755483595   25000 FALSE      list  5.7554836
+    ## 26  6875118765   30000 FALSE      list  6.8751188
+    ## 27  7837714929   35000 FALSE      list  7.8377149
+    ## 28  8954524515   40000 FALSE      list  8.9545245
+    ## 29  9943655351   45000 FALSE      list  9.9436554
+    ## 30 10698030766   50000 FALSE      list 10.6980308
+    ## 31   577996189      10  TRUE       env  0.5779962
+    ## 32   553920012      50  TRUE       env  0.5539200
+    ## 33   577584400     100  TRUE       env  0.5775844
+    ## 34   557248263     500  TRUE       env  0.5572483
+    ## 35   558087857    1000  TRUE       env  0.5580879
+    ## 36   565963340    5000  TRUE       env  0.5659633
+    ## 37   574153458   10000  TRUE       env  0.5741535
+    ## 38   585513042   15000  TRUE       env  0.5855130
+    ## 39   581104190   20000  TRUE       env  0.5811042
+    ## 40   600090411   25000  TRUE       env  0.6000904
+    ## 41   583665668   30000  TRUE       env  0.5836657
+    ## 42   593303365   35000  TRUE       env  0.5933034
+    ## 43   594791427   40000  TRUE       env  0.5947914
+    ## 44   623277780   45000  TRUE       env  0.6232778
+    ## 45   607557833   50000  TRUE       env  0.6075578
+    ## 46  1015877591      10 FALSE       env  1.0158776
+    ## 47   981468429      50 FALSE       env  0.9814684
+    ## 48   994682917     100 FALSE       env  0.9946829
+    ## 49   991182569     500 FALSE       env  0.9911826
+    ## 50   979488311    1000 FALSE       env  0.9794883
+    ## 51  1127760104    5000 FALSE       env  1.1277601
+    ## 52   996012819   10000 FALSE       env  0.9960128
+    ## 53  1003847312   15000 FALSE       env  1.0038473
+    ## 54  1110177655   20000 FALSE       env  1.1101777
+    ## 55  1005557354   25000 FALSE       env  1.0055574
+    ## 56  1111310383   30000 FALSE       env  1.1113104
+    ## 57  1049311833   35000 FALSE       env  1.0493118
+    ## 58  1241422736   40000 FALSE       env  1.2414227
+    ## 59  1101028473   45000 FALSE       env  1.1010285
+    ## 60  1034865971   50000 FALSE       env  1.0348660

@@ -264,11 +264,11 @@ devTestNA <- function()
 
 if(dir.exists("~/src/uaparserjs/.git"))
 {
-#  uaTest()
-#  uaTestNA()
+  uaTest()
+  uaTestNA()
 
-#  osTest()
-#  osTestNA()
+  osTest()
+  osTestNA()
 
   devTest()
   devTestNA()
